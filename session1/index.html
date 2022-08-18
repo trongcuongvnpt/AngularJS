@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo for Angular App Lifecycle</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="costApp" ng-controller="CostController">
+    <b>Bill:</b>
+    <div>  Quantity: <input type="number" min="0" ng-model="qty" required></div>
+    <div> Cost: <input type="number" min="0" ng-model="cost" required> </div>
+<div>
+    <b>Total: </b>
+    <span>
+        {{total | currency: '$'}}
+    </span>
+    <button class="btn" ng-click="pay()">Pay</button>
+</div>
+    <script>
+        var app = angular.module('costApp', []);
+        app.controller('CostController', function ($scope){
+            $scope.qty = 0;
+            $scope.cost = 0;
+            $scope.total = 0;
+            $scope.pay = function(){
+                this.total = this.qty * this.cost
+            };
+        });
+    </script>
+</div>
+</body>
+</html>
